@@ -1,3 +1,5 @@
+> **Archivio.** Il materiale di questo repository è passato in **Island-Mark** (cartella `brand/`), che è il repository principale. Qui non si aggiorna più.
+
 # Island Mark (ex Island Print) — materiale recuperato
 
 > **Nome attuale: Island Mark** (dal 09/10/2026). "Mark" significa "segno": richiama il claim "Lasciamo il segno, online." e la traccia dell'impronta. Le sezioni 2 e 3 raccontano la ricerca del nome e restano come storia: lì il nome è ancora "Island Print".
