@@ -94,8 +94,8 @@ Artifact aggiunto alla stessa tela. Struttura:
    rendono inimitabile.
 3. **Il nome dell'agenzia**: "Island, perché è casa. Print, perché resta."
 4. **Cosa fate**: siti, social, sponsorizzate, e-commerce (etichetta "presto");
-   punti di forza: risposte rapide, prezzi chiari, persone e non ticket.
-5. **Chi siamo**: "tre ragazzi, un'isola, troppi siti brutti".
+   punti di forza: risposte rapide, prezzi chiari, sempre le stesse persone (prima: "persone e non ticket").
+5. **Chi siamo**: "Tre ragazzi, un'isola, un solo segno." (prima: "troppi siti brutti").
 6. **Chiamata finale**: "Qual è la tua impronta?" con email e WhatsApp.
 
 Foto, nomi, ruoli, email, WhatsApp e partita IVA erano segnaposto tra parentesi quadre.
