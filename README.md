@@ -1,4 +1,6 @@
-# Island Print — materiale recuperato
+# Island Mark (ex Island Print) — materiale recuperato
+
+> **Nome attuale: Island Mark** (dal 09/10/2026). "Mark" significa "segno": richiama il claim "Lasciamo il segno, online." e la traccia dell'impronta. Le sezioni 2 e 3 raccontano la ricerca del nome e restano come storia: lì il nome è ancora "Island Print".
 
 Recuperato dalla conversazione condivisa su claude.ai
 (https://claude.ai/share/ef8a703a-9b61-4d47-a085-4983d1c6d2db).
@@ -72,7 +74,7 @@ Sostituisce la prima versione a 14 creste, archiviata in `logo/v1-archivio/`.
 - **Su Nuraxi di Barumini**: il nuraghe è nel disegno, molto piccolo, un dettaglio da scoprire da vicino. È il principale della Sardegna e patrimonio UNESCO.
 - **Punto arancione = Carbonia**, la sede, nel sud-ovest dell'isola. È l'unico punto di colore del marchio.
 - **Linee interrotte**: come in ogni impronta vera, alcune creste si spezzano.
-- Scritta: **Schibsted Grotesk ExtraBold**. Colori: petrolio `#0F3A42`, corallo `#C44A2C`, sabbia `#F3EFE7`.
+- Scritta "Island Mark.": **Schibsted Grotesk ExtraBold**. Colori: petrolio `#0F3A42`, corallo `#C44A2C`, sabbia `#F3EFE7`.
 - Tre livelli di dettaglio: grande (tutte le linee), medio (con la scritta), piccolo (avatar e favicon, con il nuraghe ingrandito).
 
 File:
@@ -114,7 +116,7 @@ Non è nello scope di questa sessione.
 
 ## 7. Dove si era interrotto
 
-Rebranding del portfolio in Island Print (logo a impronta, palette blu petrolio
+Rebranding del portfolio in Island Print, poi Island Mark (logo a impronta, palette blu petrolio
 e corallo, storia dell'Ichnusa). Claude aveva letto `site.ts`, `index.css`,
 Hero, Navbar, Footer e `index.html` quando la risposta è stata interrotta.
 Nessuna modifica era stata applicata.
