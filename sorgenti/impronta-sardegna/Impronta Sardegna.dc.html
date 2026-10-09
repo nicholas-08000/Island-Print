@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e9e4da;color:#0f3a42;font-family:'Schibsted Grotesk',sans-serif}a{color:#c44a2c}a:hover{color:#0f3a42}</style>
+</helmet>
+<section id="turn-2" style="padding:56px 56px 0;display:flex;flex-direction:column;gap:32px;">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:760px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c44a2c;">Giro 2 · mini nuraghi</div>
+    <div style="font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;">Variante di <a href="#1a">1a</a> con nuraghi stilizzati</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+    <sc-for list="{{ variants2 }}" as="v" hint-placeholder-count="1">
+      <div id="{{ v.id }}" style="width:400px;background:#f3efe7;border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:18px;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:3px 8px;background:#0f3a42;color:#f3efe7;border-radius:99px;">{{ v.id }}</span>
+          <span style="font-size:15px;font-weight:500;">{{ v.name }}</span>
+        </div>
+        <div style="height:380px;display:flex;align-items:center;justify-content:center;">{{ v.big }}</div>
+        <div style="font-size:14px;line-height:1.5;text-wrap:pretty;min-height:42px;">{{ v.desc }}</div>
+        <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid #d9d2c4;border-bottom:1px solid #d9d2c4;">
+          {{ v.lock }}
+          <div style="display:flex;flex-direction:column;font-weight:800;font-size:40px;line-height:.92;letter-spacing:-.03em;">
+            <span>Island</span>
+            <span style="color:#c44a2c;">Print.</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;">
+          {{ v.avatar }}
+          {{ v.fav }}
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.4;color:#4a6268;flex:1;">avatar 64 · favicon 32<br>un solo nuraghe, ingrandito</span>
+          <button onClick="{{ v.dl }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 12px;border:1px solid #0f3a42;background:transparent;color:#0f3a42;border-radius:4px;cursor:pointer;white-space:nowrap;" style-hover="background:#0f3a42;color:#f3efe7;">SVG ↓</button>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section id="turn-1" style="padding:56px;display:flex;flex-direction:column;gap:32px;">
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:760px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c44a2c;">Giro 1 · linee interne</div>
+    <div style="font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;">Impronta Sardegna — quattro direzioni</div>
+    <div style="font-size:16px;line-height:1.5;text-wrap:pretty;">Contorno e centro ricavati dal logo attuale. Minuzie da impronta reale (terminazioni, punti, biforcazioni), linee che si aprono per formare un nuraghe o diventano onde verso la costa, spessore variabile in stile incisione. Sotto ogni marchio: versione ridotta per avatar e favicon.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+    <div style="width:400px;background:#f3efe7;border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:18px;box-sizing:border-box;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:3px 8px;border:1px solid #0f3a42;border-radius:99px;">originale</span>
+        <span style="font-size:15px;font-weight:500;">Riferimento</span>
+      </div>
+      <div style="height:380px;position:relative;overflow:hidden;">
+        <img src="uploads/Logo%20principale%401x.png" alt="Logo originale" style="position:absolute;width:1200px;max-width:none;left:-228px;top:-170px;">
+      </div>
+      <div style="font-size:14px;line-height:1.5;">Anelli concentrici regolari, poche interruzioni.</div>
+    </div>
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:28px;">Calcolo le linee…</div>
+    </sc-if>
+    <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
+      <div id="{{ v.id }}" style="width:400px;background:#f3efe7;border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:18px;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:3px 8px;background:#0f3a42;color:#f3efe7;border-radius:99px;">{{ v.id }}</span>
+          <span style="font-size:15px;font-weight:500;">{{ v.name }}</span>
+        </div>
+        <div style="height:380px;display:flex;align-items:center;justify-content:center;">{{ v.big }}</div>
+        <div style="font-size:14px;line-height:1.5;text-wrap:pretty;min-height:42px;">{{ v.desc }}</div>
+        <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid #d9d2c4;border-bottom:1px solid #d9d2c4;">
+          {{ v.lock }}
+          <div style="display:flex;flex-direction:column;font-weight:800;font-size:40px;line-height:.92;letter-spacing:-.03em;">
+            <span>Island</span>
+            <span style="color:#c44a2c;">Print.</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;">
+          {{ v.avatar }}
+          {{ v.fav }}
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.4;color:#4a6268;flex:1;">avatar 64 · favicon 32<br>versione ridotta</span>
+          <button onClick="{{ v.dl }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 12px;border:1px solid #0f3a42;background:transparent;color:#0f3a42;border-radius:4px;cursor:pointer;white-space:nowrap;" style-hover="background:#0f3a42;color:#f3efe7;">SVG ↓</button>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lineWeight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1.9,&quot;min&quot;:1.2,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Linee&quot;},&quot;rings&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:14,&quot;min&quot;:9,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Linee&quot;},&quot;minutiae&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;normali&quot;,&quot;options&quot;:[&quot;poche&quot;,&quot;normali&quot;,&quot;molte&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Linee&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;centro&quot;,&quot;options&quot;:[&quot;nessuno&quot;,&quot;centro&quot;,&quot;simbolo&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Colore&quot;}}">
+const TAU=Math.PI*2,INK='#0f3a42',ACC='#c44a2c',CREAM='#f3efe7',SC=1.6;
+const X0=270,Y0=150,CW=260,CH=420,CEN=[406-X0,330-Y0],NUR=[400-X0,452-Y0];
+let G=null;
+function iso(F,gw,gh,lv){
+  const pt=new Map(),segs=[];
+  const ep=(i,j,v)=>{const id=(v?'v':'h')+i+'_'+j;if(!pt.has(id)){const a=F[j*gw+i],b=v?F[(j+1)*gw+i]:F[j*gw+i+1],t=(lv-a)/(b-a);pt.set(id,v?[i,j+t]:[i+t,j]);}return id;};
+  for(let j=0;j<gh-1;j++)for(let i=0;i<gw-1;i++){
+    const v0=F[j*gw+i],v1=F[j*gw+i+1],v2=F[(j+1)*gw+i+1],v3=F[(j+1)*gw+i];
+    const c=(v0>lv?8:0)|(v1>lv?4:0)|(v2>lv?2:0)|(v3>lv?1:0);if(c===0||c===15)continue;
+    const T=()=>ep(i,j,0),R=()=>ep(i+1,j,1),B=()=>ep(i,j+1,0),L=()=>ep(i,j,1),add=(a,b)=>segs.push([a(),b()]),ctr=(v0+v1+v2+v3)/4>lv;
+    switch(c){case 1:case 14:add(L,B);break;case 2:case 13:add(B,R);break;case 3:case 12:add(L,R);break;case 4:case 11:add(T,R);break;case 6:case 9:add(T,B);break;case 7:case 8:add(L,T);break;
+      case 5:if(ctr){add(L,T);add(B,R);}else{add(L,B);add(T,R);}break;case 10:if(ctr){add(T,R);add(L,B);}else{add(L,T);add(B,R);}break;}
+  }
+  const adj=new Map();segs.forEach((s,k)=>s.forEach(id=>{let a=adj.get(id);if(!a)adj.set(id,a=[]);a.push(k);}));
+  const used=new Uint8Array(segs.length),lines=[];
+  for(let k=0;k<segs.length;k++){if(used[k])continue;used[k]=1;const line=[segs[k][0],segs[k][1]];
+    const ext=()=>{for(;;){const cur=line[line.length-1];const m=(adj.get(cur)||[]).find(x=>!used[x]);if(m===undefined)return;used[m]=1;const s=segs[m];line.push(s[0]===cur?s[1]:s[0]);}};
+    ext();line.reverse();ext();lines.push(line.map(id=>pt.get(id)));}
+  return lines;
+}
+const plen=p=>{let s=0;for(let i=1;i<p.length;i++)s+=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);return s;};
+function smoothC(p,r){const n=p.length;return p.map((_,i)=>{let x=0,y=0;for(let j=-r;j<=r;j++){const q=p[(i+j+n)%n];x+=q[0];y+=q[1];}return[x/(2*r+1),y/(2*r+1)];});}
+function resampleC(p,sp){const q=p.concat([p[0]]),L=plen(q),n=Math.max(8,Math.round(L/sp)),o=[];let seg=0,acc=0;
+  for(let k=0;k<n;k++){const target=k*L/n;while(seg<q.length-2){const d=Math.hypot(q[seg+1][0]-q[seg][0],q[seg+1][1]-q[seg][1]);if(acc+d>=target)break;acc+=d;seg++;}
+    const a=q[seg],b=q[seg+1],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1,u=Math.min(1,(target-acc)/d);o.push([a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u]);}
+  return o;}
+function morph(m,w,h,r,dil){const o=new Uint8Array(w*h),t=new Uint8Array(w*h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){let v=dil?0:1;for(let d=-r;d<=r;d++){const xx=x+d;const s=xx<0||xx>=w?0:m[y*w+xx];if(dil?s:!s){v=dil?1:0;break;}}t[y*w+x]=v;}
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){let v=dil?0:1;for(let d=-r;d<=r;d++){const yy=y+d;const s=yy<0||yy>=h?0:t[yy*w+x];if(dil?s:!s){v=dil?1:0;break;}}o[y*w+x]=v;}
+  return o;}
+function buildGeo(img){
+  const cv=document.createElement('canvas');cv.width=CW;cv.height=CH;const cx=cv.getContext('2d');cx.drawImage(img,-X0,-Y0);
+  const px=cx.getImageData(0,0,CW,CH).data,dark=new Uint8Array(CW*CH);
+  for(let i=0;i<CW*CH;i++){const r=px[i*4],g=px[i*4+1],b=px[i*4+2];dark[i]=(r+g+b)/3<150&&b>r?1:0;}
+  const dl=morph(dark,CW,CH,5,true),out=new Uint8Array(CW*CH),st=[];
+  for(let x=0;x<CW;x++){st.push(x,(CH-1)*CW+x);}for(let y=0;y<CH;y++){st.push(y*CW,y*CW+CW-1);}
+  while(st.length){const k=st.pop();if(out[k]||dl[k])continue;out[k]=1;const x=k%CW,y=(k/CW)|0;if(x>0)st.push(k-1);if(x<CW-1)st.push(k+1);if(y>0)st.push(k-CW);if(y<CH-1)st.push(k+CW);}
+  let sil=new Uint8Array(CW*CH);for(let i=0;i<sil.length;i++)sil[i]=out[i]?0:1;
+  sil=morph(sil,CW,CH,7,false);
+  const F=new Float32Array(CW*CH);for(let i=0;i<F.length;i++)F[i]=sil[i];
+  const lines=iso(F,CW,CH,0.5);let coast=lines.reduce((a,b)=>plen(b)>plen(a)?b:a,[]);
+  coast=resampleC(smoothC(smoothC(coast,4),4),1.2);
+  if(true){let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;coast.forEach(p=>{mnx=Math.min(mnx,p[0]);mny=Math.min(mny,p[1]);mxx=Math.max(mxx,p[0]);mxy=Math.max(mxy,p[1]);});
+    const gs=2,gw=Math.ceil(CW/gs)+1,gh=Math.ceil(CH/gs)+1;let f=new Float32Array(gw*gh);const cs=coast.filter((_,i)=>i%2===0);
+    for(let j=0;j<gh;j++)for(let i=0;i<gw;i++){const x=i*gs,y=j*gs,xi=Math.min(CW-1,x),yi=Math.min(CH-1,y);if(!sil[yi*CW+xi])continue;let d=1e9;for(const q of cs){const dd=(q[0]-x)**2+(q[1]-y)**2;if(dd<d)d=dd;}d=Math.sqrt(d);const r=Math.hypot(x-CEN[0],y-CEN[1]);f[j*gw+i]=d/(d+r+1e-6);}
+    for(let pass=0;pass<10;pass++){const o=new Float32Array(f.length);for(let j=1;j<gh-1;j++)for(let i=1;i<gw-1;i++){const k=j*gw+i;if(f[k]===0)continue;o[k]=(f[k]*4+f[k-1]+f[k+1]+f[k-gw]+f[k+gw])/8;}f=o;}
+    G={coast,vb:[mnx-10,mny-10,mxx-mnx+20,mxy-mny+20],f,gw,gh,gs};return G;}
+  const gs=2,gw=Math.ceil(CW/gs),gh=Math.ceil(CH/gs),ins=new Uint8Array(gw*gh),u=new Float64Array(gw*gh),fix=new Uint8Array(gw*gh);
+  const inside=(x,y)=>{const xi=Math.round(x),yi=Math.round(y);return xi>=0&&yi>=0&&xi<CW&&yi<CH&&sil[yi*CW+xi]===1;};
+  for(let j=1;j<gh-1;j++)for(let i=1;i<gw-1;i++){const k=j*gw+i;if(inside(i*gs,j*gs)){ins[k]=1;const d=Math.hypot(i*gs-CEN[0],j*gs-CEN[1]);if(d<4){fix[k]=1;u[k]=1;}else u[k]=Math.max(0,1-d/200);}}
+  for(let it=0;it<1400;it++)for(let j=1;j<gh-1;j++)for(let i=1;i<gw-1;i++){const k=j*gw+i;if(!ins[k]||fix[k])continue;u[k]+=1.92*((u[k-1]+u[k+1]+u[k-gw]+u[k+gw])/4-u[k]);}
+  const U=(x,y)=>{x/=gs;y/=gs;const i=Math.max(0,Math.min(gw-2,Math.floor(x))),j=Math.max(0,Math.min(gh-2,Math.floor(y))),fx=x-i,fy=y-j,k=j*gw+i;return u[k]*(1-fx)*(1-fy)+u[k+1]*fx*(1-fy)+u[k+gw]*(1-fx)*fy+u[k+gw+1]*fx*fy;};
+  const K=1440,streams=[];
+  for(let s=0;s<K;s++){const a=s/K*TAU;let p=[CEN[0]+4*Math.cos(a),CEN[1]+4*Math.sin(a)];const pts=[CEN.slice(),p],cum=[0,4];
+    for(let n=0;n<900;n++){const gx=U(p[0]+1,p[1])-U(p[0]-1,p[1]),gy=U(p[0],p[1]+1)-U(p[0],p[1]-1),gl=Math.hypot(gx,gy);if(gl<1e-14)break;
+      const q=[p[0]-gx/gl*0.8,p[1]-gy/gl*0.8];pts.push(q);cum.push(cum[cum.length-1]+0.8);p=q;if(!inside(q[0],q[1]))break;}
+    streams.push({pts,cum,L:cum[cum.length-1]});}
+  let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;coast.forEach(p=>{mnx=Math.min(mnx,p[0]);mny=Math.min(mny,p[1]);mxx=Math.max(mxx,p[0]);mxy=Math.max(mxy,p[1]);});
+  const pad=10;G={coast,streams,vb:[mnx-pad,mny-pad,mxx-mnx+pad*2,mxy-mny+pad*2]};return G;
+}
+function ringAt(t){
+  const ls=iso(G.f,G.gw,G.gh,1-t);let p=ls.reduce((a,b)=>b.length>a.length?b:a,[]).map(q=>[q[0]*G.gs,q[1]*G.gs]);
+  if(p.length>1&&p[0][0]===p[p.length-1][0]&&p[0][1]===p[p.length-1][1])p.pop();
+  let ar=0;for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length];ar+=a[0]*b[1]-b[0]*a[1];}if(ar<0)p.reverse();
+  return resampleC(smoothC(p,2),1);
+}
+function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function nuraghe(s,B){
+  const [cx,cy]=NUR,T=(x,y)=>[cx+x*s,cy+y*s];
+  const poly=[[-20,21],[-12.5,-9.5],[-15,-9.5],[-15,-18],[15,-18],[15,-9.5],[12.5,-9.5],[20,21]].map(p=>T(p[0],p[1]));
+  const lines=[],step=s>1.2?8:5.6;
+  for(let y=-15;y<=19.5;y+=step){const h=y<-9.5?13.2:11.5+(y+9.5)/30.5*7.4;
+    if(y>8)lines.push([T(-h,y),T(-3.5,y)],[T(3.5,y),T(h,y)]);else lines.push([T(-h,y),T(h,y)]);}
+  return {poly,lines,gap:3+B*0.7};
+}
+function pip(p,poly){let ins=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])ins=!ins;}return ins;}
+function dSeg(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1];let t=((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy);t=Math.max(0,Math.min(1,t));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);}
+function inZone(p,z){if(z.z)return z.z.some(q=>inZone(p,q));if(pip(p,z.poly))return true;for(let i=0;i<z.poly.length;i++)if(dSeg(p,z.poly[i],z.poly[(i+1)%z.poly.length])<z.gap)return true;return false;}
+function normals(p){const n=p.length;return p.map((_,i)=>{const a=p[(i-1+n)%n],b=p[(i+1)%n],tx=b[0]-a[0],ty=b[1]-a[1],l=Math.hypot(tx,ty)||1;return[-ty/l,tx/l];});}
+const f1=n=>n.toFixed(1);
+function build(cfg,o){
+  const N=o.N,B=o.base*SC,els=[],lam=o.small?24:15,waveA=o.small?3:1.8;
+  const shade=p=>0.5+0.5*Math.cos(Math.atan2(p[1]-CEN[1],p[0]-CEN[0])-Math.PI/4);
+  const width=p=>cfg.width?B*(0.38+1.15*shade(p)):B;
+  const ps=a=>a.map(p=>f1(p[0])+' '+f1(p[1])).join('L');
+  const emit=(pts,closed,col)=>{
+    if(pts.length<3){const p=pts[0];els.push({k:'c',x:p[0],y:p[1],r:width(p)*0.62,c:col});return;}
+    if(!cfg.width){els.push({k:'s',d:'M'+ps(pts)+(closed?'Z':''),w:B,c:col});return;}
+    const n=pts.length,cum=[0];for(let i=1;i<n;i++)cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));const Lt=cum[n-1],Lf=[],Rt=[];
+    for(let i=0;i<n;i++){const a=closed?pts[(i-1+n)%n]:pts[Math.max(0,i-1)],b=closed?pts[(i+1)%n]:pts[Math.min(n-1,i+1)],tx=b[0]-a[0],ty=b[1]-a[1],l=Math.hypot(tx,ty)||1,nx=-ty/l,ny=tx/l;
+      let w=width(pts[i]);if(!closed)w*=0.3+0.7*Math.min(1,Math.min(cum[i],Lt-cum[i])/6);
+      Lf.push([pts[i][0]+nx*w/2,pts[i][1]+ny*w/2]);Rt.push([pts[i][0]-nx*w/2,pts[i][1]-ny*w/2]);}
+    Rt.reverse();els.push({k:'f',d:closed?'M'+ps(Lf)+'ZM'+ps(Rt)+'Z':'M'+ps(Lf)+'L'+ps(Rt)+'Z',c:col});
+  };
+  const zs=[];if(cfg.nuraghe)zs.push(nuraghe(o.small?1.6:1,B));
+  const minis=cfg.minis?(o.small?[[130,262,cfg.smallMini??2.1]]:cfg.minis).map(([x,y,s])=>{const T=(a,b)=>[x+a*s,y+b*s];
+    return {poly:[[-5,4],[-3.2,-2.6],[-3.9,-2.6],[-3.9,-4.4],[3.9,-4.4],[3.9,-2.6],[3.2,-2.6],[5,4]].map(p=>T(p[0],p[1])),gap:2+B*0.55};}):[];
+  zs.push(...minis);
+  const [vx,vy,vw,vh]=G.vb,CB=[vx+10+(8.522-8.13)/(9.83-8.13)*(vw-20),vy+10+(41.26-39.167)/(41.26-38.86)*(vh-20)],cbR=B*(o.small?0.95:1.15);
+  zs.push({poly:Array.from({length:12},(_,i)=>[CB[0]+cbR*Math.cos(i/12*TAU),CB[1]+cbR*Math.sin(i/12*TAU)]),gap:1.6+B*0.6});
+  const zone=zs.length?{z:zs}:null,r=rng(cfg.seed),mult=o.minutiae;
+  const rings=[];
+  for(let i=0;i<N;i++){const t=Math.pow((i+1)/(N+1),1.08);let p=ringAt(t);
+    if(cfg.wave){const A=waveA*Math.max(0,Math.min(1,(t-0.45)/0.4));if(A>0){const nW=Math.max(1,Math.round(G.coast.length*1.2/lam)),nm=normals(p);p=p.map((q,k)=>{const gx=q[0]/G.gs,gy=q[1]/G.gs,ii=Math.max(1,Math.min(G.gw-2,Math.round(gx))),jj=Math.max(1,Math.min(G.gh-2,Math.round(gy))),F=G.f,W2=G.gw,gr=Math.hypot(F[jj*W2+ii+1]-F[jj*W2+ii-1],F[(jj+1)*W2+ii]-F[(jj-1)*W2+ii])/(2*G.gs),sp=1/((gr||1e-3)*(N+1)),d=A*Math.max(0,Math.min(1,(sp-B-1.5)/3))*Math.sin(Math.atan2(q[1]-CEN[1],q[0]-CEN[0])*nW);return[q[0]+nm[k][0]*d,q[1]+nm[k][1]*d];});}}
+    rings.push(p);}
+  const nearest=(ring,q)=>{let b=0,bd=1e9;for(let k=0;k<ring.length;k++){const d=(ring[k][0]-q[0])**2+(ring[k][1]-q[1])**2;if(d<bd){bd=d;b=k;}}return b;};
+  for(let i=0;i<N;i++){
+    const pts=rings[i],M=pts.length,keep=new Uint8Array(M).fill(1);
+    if(zone)for(let k=0;k<M;k++)if(inZone(pts[k],zone))keep[k]=0;
+    if(i>=2&&mult>0){const cnt=Math.floor(mult*(0.6+i*0.2)+r());
+      for(let e=0;e<cnt;e++){const k0=Math.floor(r()*M),gl=Math.round(3+B),ty=r();
+        if(ty<0.4){for(let j=0;j<gl;j++)keep[(k0+j)%M]=0;}
+        else if(ty<0.66){const dl=Math.max(1,Math.round(B*0.4));for(let j=0;j<gl*2+dl;j++)if(j<gl||j>=gl+dl)keep[(k0+j)%M]=0;}
+        else if(i<N-1){const nx=rings[i+1],m0=nearest(nx,pts[k0]),bl=16,bp=[];
+          for(let s=0;s<=bl;s++){const a=pts[(k0+s)%M],b=nx[(m0+s)%nx.length],uu=s/bl,sm=uu*uu*(3-2*uu);bp.push([a[0]+(b[0]-a[0])*sm,a[1]+(b[1]-a[1])*sm]);}
+          if(!(zone&&bp.some(q=>inZone(q,zone))))emit(bp,false,'ink');}
+      }}
+    let st=-1;for(let k=0;k<M;k++)if(!keep[k]){st=k;break;}
+    if(st<0){emit(pts,true,'ink');continue;}
+    let run=[];for(let j=1;j<=M;j++){const k=(st+j)%M;if(keep[k])run.push(pts[k]);else if(run.length){emit(run,false,'ink');run=[];}}
+    if(run.length)emit(run,false,'ink');
+  }
+  if(cfg.width)emit(G.coast,true,'ink');else els.push({k:'s',d:'M'+ps(G.coast)+'Z',w:B,c:'ink'});
+  els.push({k:'c',x:CEN[0],y:CEN[1],r:B*(o.small?0.9:1.05),c:'ink'});
+  els.push({k:'c',x:CB[0],y:CB[1],r:cbR,c:o.accent==='nessuno'?'ink':'acc'});
+  minis.forEach(m=>els.push({k:'f',d:'M'+ps(m.poly)+'Z',c:o.accent==='simbolo'?'acc':'ink'}));
+  if(cfg.nuraghe)zs.find(z=>z.lines).lines.forEach(l=>els.push({k:'s',d:'M'+ps(l),w:B*(cfg.width?1.05:0.9),c:o.accent==='simbolo'?'acc':'ink'}));
+  return els;
+}
+function toReact(els,h,ink,acc,bg){
+  const e=React.createElement,col=c=>c==='acc'?acc:ink,[vx,vy,vw,vh]=G.vb;
+  const kids=els.map((x,i)=>x.k==='c'?e('circle',{key:i,cx:x.x,cy:x.y,r:x.r,fill:col(x.c)}):x.k==='f'?e('path',{key:i,d:x.d,fill:col(x.c)}):e('path',{key:i,d:x.d,fill:'none',stroke:col(x.c),strokeWidth:x.w,strokeLinecap:'round',strokeLinejoin:'round'}));
+  if(bg){const cx=vx+vw/2,cy=vy+vh/2,R=vh/2+30;return e('svg',{width:h,height:h,viewBox:`${cx-R} ${cy-R} ${2*R} ${2*R}`,style:{display:'block',flex:'none'}},e('circle',{key:'bg',cx,cy,r:R,fill:bg}),...kids);}
+  return e('svg',{height:h,width:h*vw/vh,viewBox:G.vb.join(' '),style:{display:'block',flex:'none'}},...kids);
+}
+function toSVG(els){
+  const col=c=>c==='acc'?ACC:INK;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${G.vb.map(f1).join(' ')}">`+els.map(x=>x.k==='c'?`<circle cx="${f1(x.x)}" cy="${f1(x.y)}" r="${f1(x.r)}" fill="${col(x.c)}"/>`:x.k==='f'?`<path d="${x.d}" fill="${col(x.c)}"/>`:`<path d="${x.d}" fill="none" stroke="${col(x.c)}" stroke-width="${f1(x.w)}" stroke-linecap="round" stroke-linejoin="round"/>`).join('')+'</svg>';
+}
+const VARIANTS=[
+  {id:'1a',name:'Incisione',seed:3,width:true,desc:'Spessore che cresce verso sud-est come un’incisione a bulino; terminazioni affusolate, punti e biforcazioni.'},
+  {id:'1b',name:'Nuraghe',seed:7,nuraghe:true,desc:'Le linee si aprono nel Campidano e lasciano emergere un nuraghe, costruito a filari come la pietra.'},
+  {id:'1c',name:'Mare',seed:11,wave:true,desc:'Verso la costa gli anelli diventano onde; il centro resta un’impronta calma e leggibile.'},
+  {id:'1d',name:'Sintesi',seed:5,width:true,nuraghe:true,wave:true,desc:'Incisione + nuraghe + onde costiere: il più ricco, pensato per stampa e grande formato.'}
+];
+const VARIANTS2=[
+  {id:'2a',name:'Incisione + nuraghi',seed:3,width:true,minis:[[102,146,1],[108,210,1],[130,262,1.15],[178,178,0.9]],desc:'Come 1a, con quattro nuraghi pieni dove sorgono quelli veri: Santu Antine, Losa, Barumini, Serra Orrios. Le linee si aprono attorno.'},
+  {id:'2b',name:'Incisione + Su Nuraxi',seed:3,width:true,minis:[[130,262,0.75]],smallMini:1.6,desc:'Solo Su Nuraxi di Barumini, molto piccolo: un dettaglio da scoprire da vicino. L’impronta resta protagonista.'}
+];
+const mk=(cfg,N,base,mult,acc)=>{
+  const big=build(cfg,{N,base,minutiae:mult,accent:acc}),sm=build(cfg,{N:6,base:base*2.3,minutiae:0,accent:acc,small:true});
+  return {...cfg,big:toReact(big,360,INK,ACC),lock:toReact(build(cfg,{N:9,base:base*1.5,minutiae:mult*0.4,accent:acc}),104,INK,ACC),avatar:toReact(sm,64,CREAM,ACC,INK),fav:toReact(sm,32,INK,ACC),
+    dl:()=>{const b=new Blob([toSVG(big)],{type:'image/svg+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`impronta-${cfg.id}.svg`;a.click();}};
+};
+class Component extends DCLogic {
+  state={ready:!!G};
+  componentDidMount(){
+    if(G)return;
+    const img=new Image();
+    img.onload=()=>{setTimeout(()=>{buildGeo(img);this.setState({ready:true});},30);};
+    img.src='uploads/Logo%20principale%401x.png';
+  }
+  renderVals(){
+    if(!this.state.ready||!G)return {variants:[],variants2:[],loading:true};
+    const p=this.props,base=p.lineWeight??1.9,N=p.rings??14,acc=p.accent??'centro';
+    const mult={poche:0.5,normali:1,molte:1.8}[p.minutiae??'normali']??1;
+    const key=[base,N,acc,mult].join('|');
+    if(this._key!==key){
+      this._key=key;
+      this._v=VARIANTS.map(cfg=>{
+        const big=build(cfg,{N,base,minutiae:mult,accent:acc});
+        const sm=build(cfg,{N:6,base:base*2.3,minutiae:0,accent:acc,small:true});
+        return {...cfg,big:toReact(big,360,INK,ACC),lock:toReact(build(cfg,{N:9,base:base*1.5,minutiae:mult*0.4,accent:acc}),104,INK,ACC),avatar:toReact(sm,64,CREAM,ACC,INK),fav:toReact(sm,32,INK,ACC),
+          dl:()=>{const b=new Blob([toSVG(big)],{type:'image/svg+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`impronta-${cfg.id}-${cfg.name.toLowerCase()}.svg`;a.click();}};
+      });
+    }
+    if(this._key2!==key){this._key2=key;this._v2=VARIANTS2.map(c=>mk(c,N,base,mult,acc));}
+    return {variants:this._v,variants2:this._v2,loading:false};
+  }
+}
+</script>
+</body>
+</html>

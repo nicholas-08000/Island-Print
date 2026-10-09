@@ -64,37 +64,24 @@ Alternative che tengono il concetto: **Islandmark**, **Island Imprint**,
    impronte", la call iniziale è "Lasciamo il primo segno".
 5. Opzionale: scrivere Islandprint attaccato.
 
-## 4. Logo
+## 4. Logo (versione attuale: "Impronta Sardegna 2b")
 
-Creato come artifact su claude.ai (privato) con due tavole:
-- **Logo principale**: impronta digitale con le creste che seguono la costa
-  sarda. Il centro del vortice cade nel cuore dell'isola, alcune linee sono
-  interrotte per renderla più realistica. Accanto: "Island Print." con il
-  claim "Lasciamo il segno, online."
-- **Varianti**: versione chiara su blu petrolio, icona per profilo/app, prova a
-  dimensione piccola, palette **blu petrolio, corallo, sabbia**. Marchio SVG in
-  due spessori (quello spesso per le dimensioni piccole).
+Sostituisce la prima versione a 14 creste, archiviata in `logo/v1-archivio/`.
 
-Dettaglio storico per il racconto: i Greci chiamavano la Sardegna **Ichnusa**,
-da *ichnos* = "orma/impronta". Island Print è la traduzione moderna del nome
-antico.
+- **Impronta digitale sul profilo della Sardegna**, con le linee tracciate come un'**incisione a bulino**: lo spessore cambia lungo il tratto, come nella tradizione orafa sarda. I piccoli punti sparsi fanno parte dell'incisione.
+- **Su Nuraxi di Barumini**: il nuraghe è nel disegno, molto piccolo, un dettaglio da scoprire da vicino. È il principale della Sardegna e patrimonio UNESCO.
+- **Punto arancione = Carbonia**, la sede, nel sud-ovest dell'isola. È l'unico punto di colore del marchio.
+- **Linee interrotte**: come in ogni impronta vera, alcune creste si spezzano.
+- Scritta: **Schibsted Grotesk ExtraBold**. Colori: petrolio `#0F3A42`, corallo `#C44A2C`, sabbia `#F3EFE7`.
+- Tre livelli di dettaglio: grande (tutte le linee), medio (con la scritta), piccolo (avatar e favicon, con il nuraghe ingrandito).
 
-Nota: il contorno dell'isola era ricostruito a mano da coordinate, quindi
-approssimato. Per la versione definitiva va ripassato su una mappa precisa.
+File:
+- `logo/impronta-petrolio.svg`, `logo/impronta-sabbia.svg`: marchio completo per fondi chiari e scuri.
+- `logo/avatar.svg`, `logo/favicon.svg`: versioni ridotte.
+- `logo/scheda-2b.png`: la scheda con marchio, lockup e icone.
+- `sorgenti/impronta-sardegna/`: l'export originale del progetto, con il generatore delle linee (si apre nel browser, serve internet per caricare React).
 
-Immagini recuperate (PNG, 1200x720):
-- `logo/logo-principale.png`
-- `logo/varianti-e-palette.png`
-
-Vettoriali originali (recuperati dagli zip esportati):
-- `logo/svg/marchio-blu-sottile.svg`, `marchio-blu-spesso.svg` (#0E3B43)
-- `logo/svg/marchio-corallo-spesso.svg` (#D9573B)
-- `logo/svg/marchio-sabbia-sottile.svg`, `marchio-sabbia-spesso.svg` (#F4EFE6)
-- `logo/varianti-e-icona.pdf`: tavola delle varianti
-- `sorgenti/landing-storia/Storia.dc.html`: la landing page della storia del brand (testi e stili completi)
-- `sorgenti/`: i mockup HTML esportati (`Main.dc.html`, `Varianti.dc.html`) con le misure di font, spazi e colori. Le librerie React incluse negli zip non sono state copiate.
-
-Spesso (stroke 16) per le dimensioni piccole, sottile (stroke 9) per le grandi.
+La storia del logo (Ichnusa → impronta → nome → uso) è raccontata nella pagina "Il segno" del portfolio (repo `Portfolio`).
 
 ## 5. Landing page di storia del brand
 
